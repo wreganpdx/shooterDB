@@ -1,0 +1,76 @@
+﻿@model PagedList.IPagedList<WebApplication4.classes.gunPurchase>
+@using WebApplication4.classes;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "GunPurchaseNoSeller";
+}
+
+<h2>GunPurchaseNoSeller</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            First
+        </th>
+        <th>
+            Last
+        </th>
+        <th>
+            Seller Name
+        </th>
+        <th>
+            Gun Purchase Desc
+        </th>
+        <th>
+            Cost
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Gun Name
+        </th>
+
+        <th>
+            edit
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.first)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.last)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gpDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gpCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gpDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.gpId)
+                @Html.ActionLink("Edit", "EditGunPurchase", "Guns", new { gpId = item.gpId }, null)
+                <input type="button" value="add" onclick="location.href='@Url.Action("EditGunPurchase", "Guns", new { gpId = item.gpId })'" />
+            </td>
+        </tr>
+    }
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("GunPurchaseNoSeller",
+        new { page}))
+</table>

@@ -1,0 +1,174 @@
+﻿@model PagedList.IPagedList<WebApplication4.classes.massShooting>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            Name
+        </th>
+        <th>
+            City
+        </th>
+        <th>
+            State
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Summary
+        </th>
+        <th>
+            Fatalities
+        </th>
+        <th>
+            Injured
+        </th>
+        <th>
+            Victims
+        </th>
+        <th>
+            Location Desc
+        </th>
+        <th>
+            Age
+        </th>
+        <th>
+            Health
+        </th>
+        <th>
+            Health Desc
+        </th>
+        <th>
+            Where Obtained
+        </th>
+        <th>
+            Weapon Type
+        </th>
+        <th>
+            Weapon Details
+        </th>
+       
+        <th>
+            Latitude
+        </th>
+        <th>
+            Longitude
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.mName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mCity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.postal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mDate)
+        </td>
+        <td>
+            <input type="button" value="View" onclick="location.href='@Url.Action("ViewSummary", "Mass", new { mName = item.mName })'" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fatalities)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.injured)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.total_victims)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.locDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.perpAge)
+        </td>
+        <td>
+            @if (item.perpHealth.Length > 8)
+            {
+                <input type="button" value="View" onclick="location.href='@Url.Action("ViewHealthDetails", "Mass", new { mName = item.mName })'" />
+
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.perpHealth)
+            }
+        </td>
+        <td>
+            @if (item.perpHealthDesc.Length > 10)
+            {
+                <input type="button" value="View" onclick="location.href='@Url.Action("ViewHealthDetails", "Mass", new { mName = item.mName })'" />
+
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.perpHealthDesc)
+            }
+        </td>
+        <td>
+            @if (item.where_obtained.Length > 10)
+            {
+                <input type="button" value="View" onclick="location.href='@Url.Action("ViewGunDetails", "Mass", new { mName = item.mName })'" />
+
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.where_obtained)
+            }
+        </td>
+        <td>
+            @if (item.weapon_type.Length > 10)
+            {
+                <input type="button" value="View" onclick="location.href='@Url.Action("ViewGunDetails", "Mass", new { mName = item.mName })'" />
+
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.weapon_type)
+            }
+        </td>
+        <td>
+            @if (item.weapon_details.Length > 10)
+            {
+                <input type="button" value="View" onclick="location.href='@Url.Action("ViewGunDetails", "Mass", new { mName = item.mName })'" />
+
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.weapon_details)
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.latitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.longitude)
+        </td>
+    </tr>
+    }
+
+</table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("MassShootings",
+    new { page}))

@@ -1,0 +1,82 @@
+﻿@model WebApplication4.classes.actor
+
+@{
+    ViewBag.Title = "EditShooter";
+}
+
+<h2>EditShooter</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>actor</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.First, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.First, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+            @Html.ValidationMessageFor(model => model.First, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Last, htmlAttributes: new { @class = "control-label col-md-2"})
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Last, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+            @Html.ValidationMessageFor(model => model.Last, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Middle, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Middle, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Middle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.birth, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.birth, new { htmlAttributes = new { @class = "form-control", DataFormatString = "{0:MM/dd/yyyy}" } })
+            @Html.ValidationMessageFor(model => model.birth, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.death, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.death, new { htmlAttributes = new { @class = "form-control", DataFormatString = "{0:MM/dd/yyyy}" } })
+            @Html.ValidationMessageFor(model => model.death, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <table>
+        <tr>
+            <td scope="row">
+                <input type="button" value="Add Criminal Record" onclick="location.href='@Url.Action("AddRecord", "Shooter", new { first = ViewBag.First, last = ViewBag.Last })'" />
+                <input type="button" value="View Criminal Records" onclick="location.href='@Url.Action("ViewRecord", "Shooter", new { first = ViewBag.First, last = ViewBag.Last })'" />
+            </td>
+        </tr>
+        <tr>
+            <td scope="row">
+                <input type="button" value="Add Inciting Incident" onclick="location.href='@Url.Action("AddIncident", "Shooter", new { first = ViewBag.First, last = ViewBag.Last })'" />
+                <input type="button" value="View Inciting Incidents" onclick="location.href='@Url.Action("ViewIncident", "Shooter", new { first = ViewBag.First, last = ViewBag.Last })'" />
+            </td>
+        </tr>
+        <tr>
+            <td scope="row">
+                <input type="button" value="Add Gun to Shooter" onclick="location.href='@Url.Action("AddGunsToShooter", "Guns", new { first = ViewBag.First, last = ViewBag.Last })'" />
+                <input type="button" value="View Shooter Guns" onclick="location.href='@Url.Action("ViewShooterGuns", "Guns", new { first = ViewBag.First, last = ViewBag.Last })'" />
+            </td>
+            </tr>
+    </table>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" formaction="CommitShooter" value="CommitShooter" class="btn btn-default" />
+            </div>
+        </div>
+</div>
+}

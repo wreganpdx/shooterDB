@@ -1,0 +1,41 @@
+﻿@model PagedList.IPagedList<WebApplication4.classes.gun>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "Guns with no Type";
+}
+
+<h2>The guns have no types attached to them! Feel free to add types here</h2>
+
+
+<table class="table">
+    
+    <thead>
+        <tr>
+            <td scope="row">Edit - View</td>
+            <td scope="row">Gun Name</td>
+            <td scope="row">Gun Description</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td scope="row">
+                    <input type="button" value="Edit" onclick="location.href='@Url.Action("GunTypeAdd", "Guns", new { gName = item.gName })'" />
+                    <input type="button" value="View" onclick="location.href='@Url.Action("GunTypeAdd", "Guns", new { gName = item.gName })'" />
+                </td>
+                <td>@item.gName</td>
+                <td>@item.gDesc</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("GunsNoType",
+    new { page}))
+

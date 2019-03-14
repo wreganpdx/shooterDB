@@ -1,0 +1,107 @@
+﻿@model PagedList.IPagedList<WebApplication4.classes.execution>
+@using PagedList.Mvc;
+
+<h2>Executions</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Date
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Age
+        </th>
+        <th>
+            Sex
+        </th>
+        <th>
+            Victims
+        </th>
+        <th>
+            State
+        </th>
+        <th>
+            Region
+        </th>
+        <th>
+            Juvenile
+        </th>
+        <th>
+            Federal
+        </th>
+        <th>
+            Volunteer
+        </th>
+        <th>
+            Foreign National
+        </th>
+        <th>
+            County
+        </th>
+        <th>
+            Race
+        </th>
+        <th>
+            Method
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.eDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.eName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.eAge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.eSex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.eVictims)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.eState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.eRegion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.juvenile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.federal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.volunteer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.foreignnational)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.county)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.eRace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.method)
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Executions",
+    new { page}))

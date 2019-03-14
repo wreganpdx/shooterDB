@@ -1,0 +1,51 @@
+﻿@model WebApplication4.classes.massShooting
+
+@{
+    ViewBag.Title = "ViewGunDetails";
+}
+
+<h2>Weapon details:</h2>
+
+<div>
+    <h2> @Html.DisplayFor(model => model.mName)</h2>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            Weapons obtained legally:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.weapons_optained_legally)
+        </dd>
+
+        <dt>
+            Where were weapons obtained:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.where_obtained)
+        </dd>
+
+        <dt>
+            What type of weapons:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.weapon_type)
+        </dd>
+
+        <dt>
+            Weapon details:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.weapon_details)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

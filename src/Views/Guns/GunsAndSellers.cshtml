@@ -1,0 +1,83 @@
+﻿@model WebApplication4.Models.GunsAndSellers
+
+@{
+    ViewBag.Title = "GunsAndSellers";
+}
+
+<h2>GunsAndSellers</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <h4>Guns</h4>
+        <table class="table table-bordered table-responsive table-hover">
+            <thead>
+                <tr>
+                    <td scope="row">Edit - View</td>
+                    <td scope="row">Gun Name</td>
+                    <td scope="row">Gun Description</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model._guns)
+                {
+                    <tr>
+                        <td scope="row">
+                            <input type="button" value="Edit" onclick="location.href='@Url.Action("EditGun", "Guns", new { gName = item.gName })'" />
+                            <input type="button" value="View" onclick="location.href='@Url.Action("EditGun", "Guns", new { gName = item.gName })'" />
+                        </td>
+                        <td>@item.gName</td>
+                        <td>@item.gDesc</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <h4>Sellers</h4>
+        <table class="table table-bordered table-responsive table-hover">
+            <thead>
+                <tr>
+                    <td scope="row">Edit - View</td>
+                    <td scope="row">Seller Name</td>
+                    <td scope="row">Seller Sold</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model._sellers)
+                {
+                    <tr>
+                        <td scope="row">
+                            <input type="button" value="Edit" onclick="location.href='@Url.Action("EditSeller", "Guns", new { sName = item.sName })'" />
+                            <input type="button" value="View" onclick="location.href='@Url.Action("EditSeller", "Guns", new { sNAme = item.sName })'" />
+                        </td>
+                        <td>@item.sName</td>
+                        <td>@item.sSold</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <h4>Gun Specs</h4>
+        <table class="table table-bordered table-responsive table-hover">
+            <thead>
+                <tr>
+                    <td scope="row">Edit - View</td>
+                    <td scope="row">Gun Spec</td>
+                    <td scope="row">Num Guns</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model._types)
+                {
+                    <tr>
+                        <td scope="row">
+                            <input type="button" value="Edit" onclick="location.href='@Url.Action("EditType", "Guns", new { tId = item.tId })'" />
+                            <input type="button" value="View" onclick="location.href='@Url.Action("ViewSpec", "Guns", new { tId = item.tId })'" />
+                        </td>
+                        <td>@item.tName</td>
+                        <td>@item.tNum</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </dl>
+    <input type="button" value="Add Gun" onclick="location.href='@Url.Action("AddGun", "Guns")'" />
+</div>

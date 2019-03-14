@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Welcome to the Shooter Database</h1>
+    <p class="lead">Many shooters have been added to the database. Feel free to update information on existing shooters or to add new ones!.</p>
+    <p><a class="btn btn-primary btn-lg" value="View" onclick="location.href='@Url.Action("About", "Home")'">Learn more &raquo;</a></p>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Intern!</h2>
+        <p>
+            Add data to the database based on intelligently suggested criteria.
+        </p>
+        <p><a class="btn btn-default" value="View" onclick="location.href='@Url.Action("Jobs", "Home")'">Work ...  &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Search!</h2>
+        <p>Search the database for shooters</p>
+        <p><a class="btn btn-default" value="View" onclick="location.href='@Url.Action("Search", "Home")'">Search ...  &raquo;</a></p>
+    </div>
+</div>

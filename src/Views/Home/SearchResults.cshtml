@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebApplication4.classes.actor>
+
+@{
+    ViewBag.Title = "SearchResults";
+}
+
+<h2>SearchResults</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Last)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Middle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.birth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.death)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.First)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Last)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Middle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.birth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.death)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditShooter", "Shooter", new { first = item.First, last = item.Last }, null) 
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,40 @@
+﻿@model WebApplication4.Models.ShooterGP
+
+@{
+    ViewBag.Title = "Shooter Gun Purchases";
+}
+
+<h2></h2>
+<div>
+    <h4>@Model._actor.First @Model._actor.Last 's guns</h4>
+    <hr />
+    <dl class="dl-horizontal"></dl>
+
+    <table class="table table-bordered table-responsive table-hover">
+        <thead>
+            <tr>
+                <td scope="row">Edit</td>
+                <td scope="row">Gun Name</td>
+                <td scope="row">Gun Seller</td>
+                <td scope="row">Purchase Id</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model._guns)
+            {
+                <tr>
+                    <td scope="row">
+                        <input type="button" value="Edit" onclick="location.href='@Url.Action("EditGunPurchase", "Guns", new { gpId = item.gpId })'" />
+                        <input type="button" value="Delete" onclick="location.href='@Url.Action("DeleteShooterGun", "Guns", new { first = item.first, last = item.last, gpId = item.gpId })'" />
+                    </td>
+                    <td>@item.gName</td>
+                    <td>@item.sName</td>
+                    <td>@item.gpId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input type="button" value="Add Gun to Shooter" onclick="location.href='@Url.Action("AddGunsToShooter", "Guns", new { first = Model._actor.First, last = Model._actor.Last })'" />
+</div>
+<p>
+</p>

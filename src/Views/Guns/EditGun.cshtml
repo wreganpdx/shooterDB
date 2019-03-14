@@ -1,0 +1,63 @@
+﻿@model WebApplication4.Models.GunSpec
+
+@{
+    ViewBag.Title = "EditGun";
+}
+
+<h2>EditGun</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Edit Gun: @ViewBag.gName</h4>
+    <h2>@ViewBag.Message</h2>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model._gun.gName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model._gun.gName, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+            @Html.ValidationMessageFor(model => model._gun.gName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model._gun.gDesc, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model._gun.gDesc, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model._gun.gDesc, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <table class="table table-bordered table-responsive table-hover">
+        <thead>
+            <tr>
+                <td scope="row">Edit - View</td>
+                <td scope="row">Gun Type</td>
+                <td scope="row">Gun Description</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model._specs)
+            {
+                <tr>
+                    <td scope="row">
+                        <input type="button" value="Edit" onclick="location.href='@Url.Action("EditType", "Guns", new { tId = item.tId })'" />
+                        <input type="button" value="Remove" onclick="location.href='@Url.Action("RemoveType", "Guns", new { gName = Model._gun.gName, item.tId })'" />
+                    </td>
+                    <td>@item.tName</td>
+                    <td>@item.tDesc</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input type="button" value="Add Gun Spec" onclick="location.href='@Url.Action("GunTypeAdd", "Guns", new { gName = Model._gun.gName })'" />
+    <input type="button" value="Create Gun Spec" onclick="location.href='@Url.Action("CreateGunSpec", "Guns", new { gName = Model._gun.gName })'" />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" formaction="CommitGunEdit" value="CommitGunEdit" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}

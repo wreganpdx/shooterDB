@@ -1,0 +1,46 @@
+﻿@model PagedList.IPagedList<WebApplication4.classes.actor>
+@using WebApplication4.classes;
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "ShooterNoGuns";
+}
+
+<h2>These shooters were never assigned any guns! Please feel free to update!</h2>
+
+<div>
+    <table class="table table-bordered table-responsive table-hover">
+        <thead>
+            <tr>
+                <td scope="row">Edit - View</td>
+                <td scope="row">First</td>
+                <td>Last</td>
+                <td>Middle</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td scope="row">
+                        @Html.ActionLink("Add", "AddGunsToShooter", "Guns", new { first = item.First, last = item.Last }, null)
+                        <input type="button" value="add" onclick="location.href='@Url.Action("AddGunsToShooter", "Guns", new { first = item.First, last = item.Last })'" />
+                        <input type="button" value="View" onclick="location.href='@Url.Action("EditShooter", "Shooter", new { first = item.First, last = item.Last})'" />
+                    </td>
+                    <td>@item.First</td>
+                    <td>@item.Last</td>
+                    <td>@item.Middle</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("ShooterNoGuns",
+        new { page}))
+
+</div>
+

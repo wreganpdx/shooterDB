@@ -1,0 +1,85 @@
+﻿@model WebApplication4.Models.ShooterGuns
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "AddGunsToShooter";
+}
+
+<h2></h2>
+<div>
+    <h4>Guns Owned gun to @Model._actor.First @Model._actor.Last</h4>
+    <h2>Used in shooting: weapon type: @Model._massShooting.weapon_type</h2>
+    <h2>Used in shooting: details: @Model._massShooting.weapon_details</h2>
+
+    <hr />
+    <dl class="dl-horizontal"></dl>
+    <table class="table table-bordered table-responsive table-hover">
+        <thead>
+            <tr>
+
+                <td scope="row">Gun Name</td>
+                <td scope="row">Gun Description</td>
+                <td scope="row">Owned</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model._gunsOwned)
+            {
+                <tr>
+                    <td>@item.gName</td>
+                    <td>@item.gDesc</td>
+                    <td>@item.owned</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>Add Guns to @Model._actor.First @Model._actor.Last</h4>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-inline">
+        <h4></h4>
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group form-inline">
+            <span>
+                @Html.HiddenFor(model => model._actorFirst, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model._actorLast, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model._search, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model._search, "", new { @class = "text-danger" })
+                <input type="Submit" formaction="GunSeach" value="Search" class="btn btn-default" />
+            </span>
+        </div>
+        <p></p>
+    </div>
+}
+            <table class="table table-bordered table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <td scope="row">Add</td>
+                        <td scope="row">Gun Name</td>
+                        <td scope="row">Gun Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in @Model._guns)
+                    {
+                        <tr>
+                            <td scope="row">
+                                <input type="button" value="Add" onclick="location.href='@Url.Action("ShooterCommitGun", "Guns", new { first = Model._actor.First, last = Model._actor.Last, gunName = item.gName })'" />
+                            </td>
+                            <td>@item.gName</td>
+                            <td>@item.gDesc</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            Page @(Model._guns.PageCount < Model._guns.PageNumber ? 0 : Model._guns.PageNumber) of @Model._guns.PageCount
+
+            @Html.PagedListPager(Model._guns, page => Url.Action("AddGunsToShooter",
+                new { page}))
+
+            <input type="button" value="Create and add Gun" onclick="location.href='@Url.Action("CreateAndAddGun", "Guns",new { first = Model._actor.First, last = Model._actor.Last })'" />
+        </div>

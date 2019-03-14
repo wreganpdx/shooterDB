@@ -1,0 +1,48 @@
+﻿@using WebApplication4.classes;
+@model WebApplication4.Models.Shooters
+
+@{
+    ViewBag.Title = "Shooter";
+}
+
+<h2>Shooter</h2>
+
+<div>
+    <h4>Shooters</h4>
+    <table class="table table-bordered table-responsive table-hover" >
+        <thead>
+            <tr>
+                <td scope="row">Edit - View</td>
+                <td scope="row">First</td>
+                <td>Last</td>
+                <td>Middle</td>
+                <td>Birth</td>
+                <td>Death</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model.Actors)
+            {
+            <tr>
+                <td scope="row">
+                    <input type="button" value="Edit" onclick="location.href='@Url.Action("EditShooter", "Shooter", new { first = item.First, last = item.Last })'" />
+                    <input type="button" value="View" onclick="location.href='@Url.Action("EditShooter", "Shooter", new { first = item.First, last = item.Last })'" />
+                </td>
+                <td>@item.First</td>
+                <td>@item.Last</td>
+                <td>@item.Middle</td>
+                <td>@item.birth</td>
+                <td>@item.death</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <h3>
+            @ViewBag.Message
+        </h3>
+        <input type="button" value="Add Shooter" onclick="location.href='@Url.Action("AddShooter", "Shooter")'" />
+    </div>
+    <dl class="dl-horizontal"></dl>
+</div>
+

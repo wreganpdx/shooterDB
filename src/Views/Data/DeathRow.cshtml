@@ -1,0 +1,54 @@
+﻿@model PagedList.IPagedList<WebApplication4.classes.deathrow>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "DeathRow";
+}
+
+<h2>DeathRow</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            State
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Race
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.drId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.drState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.drName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.drRace)
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("DeathRow",
+    new { page}))
+

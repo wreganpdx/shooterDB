@@ -1,0 +1,84 @@
+﻿@model WebApplication4.Models.Jobs
+
+@{
+    ViewBag.Title = "Jobs";
+}
+
+<h2>Go ahead and update the database..</h2>
+
+<div>
+    <h4>Jobs</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Number of shooters with wrong birth date:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numGunmenWrongBirthDeath)
+        </dd>
+        <hr />
+        <hr />
+
+        <dt>
+            Number of shooters with no guns assigned:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numGunmenNoGuns)
+        </dd>
+        <hr />
+        <hr />
+        <dt>
+            Number of gun with no types assigned:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numGunsNoType)
+        </dd>
+        <hr />
+        <hr />
+        <dt>
+            Number of gun purchases with no sellers assigned:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numGunsSoldNoSeller)
+        </dd>
+        <hr />
+        <hr />
+        <dt>
+            Number shooters with no inciting incidents assigned:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numGunmenNoIncidents)
+        </dd>
+
+    </dl>
+    <div class="col-md-2">
+        <h2>@Html.DisplayFor(model => model.numGunmenWrongBirthDeath) shooters</h2>
+        <p>There are an estimated @Html.DisplayFor(model => model.numGunmenWrongBirthDeath) shooters with the wrong birth or death date</p>
+        <p><a class="btn btn-default" value="View" onclick="location.href='@Url.Action("ShooterWrongDates", "Shooter")'">Update...  &raquo;</a></p>
+    </div>
+    <div class="col-md-2">
+        <h2>@Html.DisplayFor(model => model.numGunsNoType) guns</h2>
+        <p>There are an estimated @Html.DisplayFor(model => model.numGunsNoType) guns with no type assigned. We should average about 3 types per gun!</p>
+        <p><a class="btn btn-default" value="View" onclick="location.href='@Url.Action("GunsNoType", "Guns")'">Update...  &raquo;</a></p>
+    </div>
+    <div class="col-md-2">
+        <h2>@Html.DisplayFor(model => model.numGunmenNoGuns) shooters</h2>
+        <p>There are an estimated @Html.DisplayFor(model => model.numGunmenNoGuns) shooters with no guns assigned!</p>
+        <p><a class="btn btn-default" value="View" onclick="location.href='@Url.Action("ShooterNoGuns", "Guns")'">Update ...  &raquo;</a></p>
+    </div>
+    <div class="col-md-2">
+        <h2> @Html.DisplayFor(model => model.numGunsSoldNoSeller) gun purchases</h2>
+        <p>There are an estimated @Html.DisplayFor(model => model.numGunsSoldNoSeller) gun purchases with no seller attached!</p>
+        <p><a class="btn btn-default" value="View" onclick="location.href='@Url.Action("GunPurchaseNoSeller", "Guns")'">Update ...  &raquo;</a></p>
+    </div>
+    <div class="col-md-2">
+        <h2>@Html.DisplayFor(model => model.numGunmenNoIncidents) incidents</h2>
+        <p>There are an estimated @Html.DisplayFor(model => model.numGunmenNoIncidents) shooters with no inciting incidents attached</p>
+        <p><a class="btn btn-default" value="View" onclick="location.href='@Url.Action("ShooterNoIncidents", "Shooter")'">Update ...  &raquo;</a></p>
+    </div>
+</div>

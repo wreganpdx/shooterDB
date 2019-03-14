@@ -1,0 +1,39 @@
+﻿@model WebApplication4.Models.Incidents
+
+@{
+    ViewBag.Title = "View Incidents";
+}
+
+<h2>ViewIncidents</h2>
+
+<div>
+    <h4>Incidents</h4>
+    <table class="table table-bordered table-responsive table-hover">
+        <thead>
+            <tr>
+                <td scope="row">Edit - View</td>
+                <td scope="row">Date</td>
+                <td scope="row">Description</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model._incidents)
+            {
+                <tr>
+            <td scope="row">
+                <input type="button" value="Edit" onclick="location.href='@Url.Action("EditIncident", "Shooter", new { iKey = item.iKey })'" />
+                <input type="button" value="View" onclick="location.href='@Url.Action("EditIncident", "Shooter", new { iKey = item.iKey })'" />
+            </td>
+            <td>@item.iDate</td>
+            <td>@item.iDescription</td>
+                </tr>
+        }
+            </tbody>
+        </table>
+    <hr />
+    <dl class="dl-horizontal"></dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,22 @@
+﻿@model WebApplication4.classes.massShooting
+
+@{
+    ViewBag.Title = "ViewSummary";
+}
+
+<h4>Mass Shooting Summary</h4>
+
+<div>
+    <h2>@Html.DisplayFor(model => model.mName)</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.summary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.summary)
+        </dd>
+
+    </dl>
+</div>

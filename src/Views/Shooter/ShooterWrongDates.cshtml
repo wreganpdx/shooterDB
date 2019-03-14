@@ -1,0 +1,45 @@
+﻿@model PagedList.IPagedList<WebApplication4.classes.actor>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Shooter";
+}
+
+<h2>These shooters likely have the wrong date for birth and/or death - feel free to update them!</h2>
+
+<div>
+    <table class="table table-bordered table-responsive table-hover">
+        <thead>
+            <tr>
+                <td scope="row">Edit - View</td>
+                <td scope="row">First</td>
+                <td>Last</td>
+                <td>Middle</td>
+                <td>Birth</td>
+                <td>Death</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td scope="row">
+                        <input type="button" value="Edit" onclick="location.href='@Url.Action("EditShooter", "Shooter", new { first = item.First, last = item.Last })'" />
+                        <input type="button" value="View" onclick="location.href='@Url.Action("EditShooter", "Shooter", new { first = item.First, last = item.Last })'" />
+                    </td>
+                    <td>@item.First</td>
+                    <td>@item.Last</td>
+                    <td>@item.Middle</td>
+                    <td>@item.birth</td>
+                    <td>@item.death</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("ShooterWrongDates",
+        new { page}))
+</div>
+

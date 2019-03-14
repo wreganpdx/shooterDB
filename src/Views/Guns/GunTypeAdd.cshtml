@@ -1,0 +1,80 @@
+﻿@model WebApplication4.Models.GunTypeAdder
+
+@{
+    ViewBag.Title = "GunTypeAdd";
+}
+
+<h2>GunTypeAdd</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>GunTypeAdder </h4>
+    <div class="form-group">
+        @Html.LabelFor(model => model._gun.gName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model._gun.gName, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+            @Html.ValidationMessageFor(model => model._gun.gName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model._gun.gDesc, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model._gun.gDesc, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+            @Html.ValidationMessageFor(model => model._gun.gDesc, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <table class="table table-bordered table-responsive table-hover">
+        <thead>
+            <tr>
+                <td scope="row">Remove Types</td>
+                <td scope="row">Gun Type</td>
+                <td scope="row">Gun Description</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model._currTypes)
+            {
+                <tr>
+                    <td scope="row">
+                        <input type="button" value="Remove" onclick="location.href='@Url.Action("RemoveType", "Guns", new { gName = Model._gun.gName, tId = item.tId })'" />
+                    </td>
+                    <td>@item.tName</td>
+                    <td>@item.tDesc</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <table class="table table-bordered table-responsive table-hover">
+        <thead>
+            <tr>
+                <td scope="row">Add Types</td>
+                <td scope="row">Gun Type</td>
+                <td scope="row">Gun Description</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item2 in @Model._newTypes)
+            {
+                <tr>
+                    <td scope="row">
+                        <input type="button" value="Add" onclick="location.href='@Url.Action("AddType", "Guns", new { gName = Model._gun.gName, tId = item2.tId })'" />
+                    </td>
+                    <td>@item2.tName</td>
+                    <td>@item2.tDesc</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" value="Create Gun Spec" onclick="location.href='@Url.Action("CreateGunSpec", "Guns", new { gName = Model._gun.gName })'" />
+        </div>
+    </div>
+</div>
+}

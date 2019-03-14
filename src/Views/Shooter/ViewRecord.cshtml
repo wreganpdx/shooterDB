@@ -1,0 +1,49 @@
+﻿@using WebApplication4.classes;
+@model WebApplication4.Models.CriminalRecords
+
+@{
+    ViewBag.Title = "Criminal Records";
+}
+
+<h2>Shooter</h2>
+<div>
+    <h4>Shooter - @Model.first @Model.last Criminal Records</h4>
+    <table class="table table-bordered table-responsive table-hover" > 
+        <tbody>
+            @foreach (var item in @Model._records)
+            {
+                <tr>
+                    <td scope="row">Date</td>
+                    <td>@item.cDate</td>
+                </tr>
+                <tr>
+                    <td scope="row">Offense</td>
+                    <td>@item.offense</td>
+                </tr>
+                <tr>
+                    <td scope="row">Offense Description</td>
+                    <td>@item.offenseDescription</td>
+                </tr>
+                <tr>
+                    <td scope="row">Trial</td>
+                    <td>@item.trial</td>
+                </tr>
+                <tr>
+                    <td scope="row">Convicted</td>
+                    <td>@item.convicted</td>
+                </tr>
+                <tr>
+                    <td scope="row">Punishment</td>
+                    <td>@item.punishmentDescription</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <h3>
+            @ViewBag.Message
+        </h3>
+    </div>
+    <dl class="dl-horizontal"></dl>
+</div>
+
